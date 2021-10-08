@@ -23,7 +23,7 @@ export class App extends Component {
   };
 
   onChangeQuery = (query) => {
-    this.setState({ searchQuery: query, currentPage: 1, images: [] });
+    this.setState({ searchQuery: query, currentPage: 1, images: [], error: null });
   };
   
 
@@ -44,7 +44,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.onChangeQuery}></Searchbar>
         {this.state.isLoading && <p>Loading...</p> }
         <ImageGallery images={this.state.images} />
-        { this.state.images.length>0 && (<button type="button" onClick={this.fetchQuery}>
+        { this.state.images.length>0 && !this.state.isLoading && (<button type="button" onClick={this.fetchQuery}>
           Загрузить еще
     </button>)}
 
