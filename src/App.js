@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Searchbar from "./Components/Searchbar";
 import ImageGallery from "./Components/ImageGallery";
 import newsApi from "./Components/Services/newsApi";
+import Modal from './Components/Modal';
 
 
 //import Loader from './Components/Loader';
@@ -13,6 +14,8 @@ export class App extends Component {
     searchQuery: "",
     isLoading: false,
     error: null,
+    showModal: false,
+    selectImage: ""
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -38,13 +41,30 @@ export class App extends Component {
         }));
       }).catch(error=>this.setState({error})).finally(()=>this.setState({isLoading: false}));
   };
+
+  toggleModal = () => {
+
+    this.setState(prevState=>({showModal: !prevState.showModal}))
+    
+  };
+  showSelectImage =  (largeImageURL)  => {
+    this.setState({ selectImage: largeImageURL });
+    this.toggleModal();
+    
+  }
+  
+  
   render() {
     return (
       <>
         <Searchbar onSubmit={this.onChangeQuery}></Searchbar>
-        {this.state.isLoading && <p>Loading...</p> }
-        <ImageGallery images={this.state.images} />
-        { this.state.images.length>0 && !this.state.isLoading && (<button type="button" onClick={this.fetchQuery}>
+
+        {this.state.isLoading && <p>Loading...</p>}
+        
+        <ImageGallery images={this.state.images} onClick={this.showSelectImage} />
+        {this.state.showModal && (<Modal largeImageURL={this.state.selectImage}  onClose={ this.toggleModal}/>)}
+        {this.state.images.length > 0 && !this.state.isLoading &&
+          (<button type="button" onClick={this.fetchQuery}>
           Загрузить еще
     </button>)}
 
