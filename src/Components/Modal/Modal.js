@@ -24,7 +24,7 @@ export default class Modal extends Component {
 
 
     render() {
-        return createModal (
+        return createModal(
             <div className="Overlay" onClick={this.handleBackDrop}>
                 <div className="Modal" >
                     <img src={this.props.largeImageURL} alt="" />
