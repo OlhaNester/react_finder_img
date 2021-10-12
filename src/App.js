@@ -3,6 +3,7 @@ import Searchbar from "./Components/Searchbar";
 import ImageGallery from "./Components/ImageGallery";
 import newsApi from "./Components/Services/newsApi";
 import Modal from './Components/Modal';
+import "./styles.css";
 
 
 //import Loader from './Components/Loader';
@@ -43,15 +44,13 @@ export class App extends Component {
   };
 
   toggleModal = () => {
-
-    this.setState(prevState=>({showModal: !prevState.showModal}))
-    
+    this.setState(state=>({showModal: !state.showModal}))
   };
-  showSelectImage =  (largeImageURL)  => {
-    this.setState({ selectImage: largeImageURL });
+  
+  showSelectImage = (largeImageURL) => {
+    this.setState(state=>({ selectImage: largeImageURL }));
     this.toggleModal();
-    
-  }
+  };
   
   
   render() {
