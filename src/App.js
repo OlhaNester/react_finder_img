@@ -63,7 +63,7 @@ export class App extends Component {
         <ImageGallery images={this.state.images} onClick={this.showSelectImage} />
         {this.state.showModal && (<Modal largeImageURL={this.state.selectImage}  onClose={ this.toggleModal}/>)}
         {this.state.images.length > 0 && !this.state.isLoading &&
-          (<button type="button" onClick={this.fetchQuery}>
+          (<button type="button" className="Button" onClick={this.fetchQuery}>
           Загрузить еще
     </button>)}
 

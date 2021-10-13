@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {createPortal} from 'react-dom';
+import { createPortal } from 'react-dom';
+import "./Modal.css";
 
 const modal = document.querySelector("#modal");
 
